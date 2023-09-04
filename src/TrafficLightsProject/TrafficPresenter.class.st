@@ -51,7 +51,7 @@ TrafficPresenter >> connectPresenters [
 
 { #category : #layout }
 TrafficPresenter >> defaultLayout [
-
+"two enclosed SpBoxLayout needed to bound the Morph"
 	^ SpBoxLayout newHorizontal
 	     spacing: 5;
 		  add: (SpBoxLayout newVertical 
