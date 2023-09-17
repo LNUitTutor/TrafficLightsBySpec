@@ -55,8 +55,8 @@ TrafficPresenter >> defaultLayout [
 	^ SpBoxLayout newHorizontal
 	     spacing: 5;
 		  add: (SpBoxLayout newVertical 
-					add: view withConstraints: [ :c | c expand: false; height: 670; padding: 5 ];
-					yourself ) withConstraints: [ :constr | constr width: 250; padding: 5 ];
+					add: view withConstraints: [ :c | c expand: false; height: 470; padding: 5 ];
+					yourself ) withConstraints: [ :constr | constr width: 195; padding: 5 ];
 		  add: (SpBoxLayout newVertical
 					spacing: 5;
 				   add: manualButton expand: false;
@@ -72,23 +72,23 @@ TrafficPresenter >> initializeMorph [
 
 	body := BorderedMorph new
 		        color: Color lightGray;
-		        extent: 240 @ 660.
+		        extent: 190 @ 470.
 	body addAllMorphs: {
 			(BalloonMorph new
 				 color: Color lightGray lighter;
 				 borderColor: Color darkGray;
-				 extent: 200 @ 200;
+				 extent: 140 @ 140;
 				 position: body position + (25 @ 25)).
 			(BalloonMorph new
 				 color: Color yellow;
 				 borderColor: Color darkGray;
-				 extent: 200 @ 200;
-				 position: body position + (25 @ 235)).
+				 extent: 140 @ 140;
+				 position: body position + (25 @ 165)).
 			(BalloonMorph new
 				 color: Color lightGray lighter;
 				 borderColor: Color darkGray;
-				 extent: 200 @ 200;
-				 position: body position + (25 @ 445)) }.
+				 extent: 140 @ 140;
+				 position: body position + (25 @ 305)) }.
 	model := TrafficLights newWith: body.
 ]
 
@@ -119,6 +119,6 @@ TrafficPresenter >> initializePresenters [
 TrafficPresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
-		title: 'A traffic ligths model';
-		initialExtent: 450 @ 710
+		title: 'Traffic Ligths Model';
+		initialExtent: 340 @ 505
 ]

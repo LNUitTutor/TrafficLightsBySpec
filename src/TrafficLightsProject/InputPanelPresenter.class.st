@@ -54,7 +54,7 @@ InputPanelPresenter >> defaultLayout [
 		  add: yellowInput at: 2 @ 3;
 		  add: 'green' at: 1 @ 4;
 		  add: greenInput at: 2 @ 4;
-		  add: readyButton at: 2 @ 5;
+		  add: readyButton at: 1 @ 5 span: 2 @ 1;
 		  yourself
 ]
 
