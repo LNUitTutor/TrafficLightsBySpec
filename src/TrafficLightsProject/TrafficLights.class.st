@@ -35,12 +35,9 @@ Class {
 { #category : #'instance creation' }
 TrafficLights class >> newWith: aMorph [
 
-	| traffic |
-	traffic := self basicNew.
-	traffic
-		view: aMorph;
-		initialize.
-	^ traffic 
+	^ self basicNew
+		  view: aMorph;
+		  initialize
 ]
 
 { #category : #action }
