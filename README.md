@@ -8,7 +8,7 @@ The application can work in two modes: in the manual mode user switches lamps on
 in the automatic mode a stopwatch helps to switch lamp. A user can define durations of glow of the lamps.
 
 To load the progect execute
-```
+```Smalltalk
 Metacello new
    baseline: 'TrafficLightsProject';
    repository: 'github://LNUitTutor/TrafficLightsBySpec/src';
