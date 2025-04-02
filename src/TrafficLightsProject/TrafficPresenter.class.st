@@ -27,17 +27,23 @@ Class {
 		'manualButton',
 		'autoButton',
 		'durationPanel',
+		'switchButton',
 		'quitButton',
 		'model'
 	],
-	#category : #TrafficLightsProject
+	#category : #'TrafficLightsProject-View'
 }
 
 { #category : #initialization }
 TrafficPresenter >> connectPresenters [
 
-	manualButton action: [ model stop; changeLamp ].
-	autoButton action: [ model stop. durationPanel show ].
+	manualButton action: [
+		model
+			stop;
+			changeLamp ].
+	autoButton action: [
+		model stop.
+		durationPanel show ].
 	durationPanel action: [
 		durationPanel hide.
 		model
@@ -46,6 +52,17 @@ TrafficPresenter >> connectPresenters [
 					durationPanel yellowDuration.
 					durationPanel greenDuration };
 			run ].
+	switchButton
+		whenActivatedDo: [
+			switchButton
+				label: 'Switch to day mode';
+				icon: (Object iconNamed: #smallNew).
+			model switchToNightMode ];
+		whenDeactivatedDo: [
+			switchButton
+				label: 'Switch to night mode';
+				icon: (Object iconNamed: #glamorousCloud).
+			model switchToDayMode ].
 	quitButton action: [ self delete ]
 ]
 
@@ -62,6 +79,7 @@ TrafficPresenter >> defaultLayout [
 				   add: manualButton expand: false;
 				   add: autoButton expand: false;
 				   add: durationPanel;
+				   addLast: switchButton expand: false;
 				   addLast: quitButton expand: false;
 				   yourself);
 		  yourself
@@ -72,20 +90,17 @@ TrafficPresenter >> initializeMorph [
 
 	body := BorderedMorph new
 		        color: Color lightGray;
-		        extent: 170 @ 470.
+		        extent: 170 @ 440.
 	body addAllMorphs: {
 			(CircleMorph new
-				 color: Color lightGray lighter;
 				 borderColor: Color darkGray;
 				 extent: 120 @ 120;
 				 position: body position + (25 @ 25)).
 			(CircleMorph new
-				 color: Color yellow;
 				 borderColor: Color darkGray;
 				 extent: 120 @ 120;
 				 position: body position + (25 @ 155)).
 			(CircleMorph new
-				 color: Color lightGray lighter;
 				 borderColor: Color darkGray;
 				 extent: 120 @ 120;
 				 position: body position + (25 @ 285)) }.
@@ -99,7 +114,8 @@ TrafficPresenter >> initializePresenters [
 	view := self instantiate: SpMorphPresenter.
 	manualButton := self newButton.
 	autoButton := self newButton.
-	quitButton := self newButton.
+	switchButton := self newToggleButton.
+	quitButton := self newButton. 
 	durationPanel := self instantiate: InputPanelPresenter.
 
 	view morph: body.
@@ -109,6 +125,9 @@ TrafficPresenter >> initializePresenters [
 	autoButton
 		label: 'Auto switch';
 		icon: (self iconNamed: #tools).
+	switchButton 
+	   label: 'Switch to night mode';
+	   icon: (self iconNamed: #glamorousCloud).
 	quitButton
 		label: 'Quit';
 		icon: (self iconNamed: #smallQuit).

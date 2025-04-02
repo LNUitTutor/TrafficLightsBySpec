@@ -27,10 +27,18 @@ Class {
 		'activeLamp',
 		'view',
 		'mustRun',
-		'stopwatch'
+		'stopwatch',
+		'method'
 	],
-	#category : #TrafficLightsProject
+	#category : #'TrafficLightsProject-Model'
 }
+
+{ #category : #'instance creation' }
+TrafficLights class >> new [
+
+	^ self error:
+		  'Should use newWith: aBorderedMorph to create an instance'
+]
 
 { #category : #'instance creation' }
 TrafficLights class >> newWith: aMorph [
@@ -41,11 +49,19 @@ TrafficLights class >> newWith: aMorph [
 ]
 
 { #category : #action }
+TrafficLights >> blinkLamp [
+
+	| lamp |
+	lamp := lamps at: activeLamp.
+	lamp isSwitchedOn
+		ifTrue: [ lamp switchOff ]
+		ifFalse: [ lamp switchOn ]
+]
+
+{ #category : #action }
 TrafficLights >> changeLamp [
 
-	(lamps at: activeLamp) switchOff.
-	activeLamp := activeLamp % 4 + 1.
-	(lamps at: activeLamp) switchOn
+	self perform: method 
 ]
 
 { #category : #initialization }
@@ -61,6 +77,15 @@ TrafficLights >> initialize [
 	(lamps at: activeLamp) switchOn.
 	mustRun := false.
 	stopwatch := Stopwatch new.
+	method := #nextLamp
+]
+
+{ #category : #action }
+TrafficLights >> nextLamp [
+
+	(lamps at: activeLamp) switchOff.
+	activeLamp := activeLamp % 4 + 1.
+	(lamps at: activeLamp) switchOn
 ]
 
 { #category : #action }
@@ -84,6 +109,20 @@ TrafficLights >> setDurations: anArray [
 { #category : #action }
 TrafficLights >> stop [
 	mustRun := false
+]
+
+{ #category : #'as yet unclassified' }
+TrafficLights >> switchToDayMode [
+
+	method := #nextLamp
+]
+
+{ #category : #'as yet unclassified' }
+TrafficLights >> switchToNightMode [
+
+	(lamps at: activeLamp) switchOff.
+	activeLamp := 2.
+	method := #blinkLamp
 ]
 
 { #category : #accessing }
