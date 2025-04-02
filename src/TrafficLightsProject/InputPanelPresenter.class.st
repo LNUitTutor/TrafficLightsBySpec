@@ -24,7 +24,7 @@ Class {
 		'greenInput',
 		'readyButton'
 	],
-	#category : #TrafficLightsProject
+	#category : #'TrafficLightsProject-View'
 }
 
 { #category : #accessing }
@@ -46,7 +46,8 @@ InputPanelPresenter >> connectPresenters [
 { #category : #layout }
 InputPanelPresenter >> defaultLayout [
 	"Set durations of ligths"
-	^ SpGridLayout new
+	| grid |
+	grid := SpGridLayout new
 		  add: 'Set durations of ligths' at: 1 @ 1 span: 2 @ 1;
 		  add: 'red' at: 1 @ 2;
 		  add: redInput at: 2 @ 2;
@@ -55,7 +56,9 @@ InputPanelPresenter >> defaultLayout [
 		  add: 'green' at: 1 @ 4;
 		  add: greenInput at: 2 @ 4;
 		  add: readyButton at: 1 @ 5 span: 2 @ 1;
-		  yourself
+		  yourself.
+	grid borderWidth: 5"; borderColor: Color black".
+	^ grid
 ]
 
 { #category : #accessing }

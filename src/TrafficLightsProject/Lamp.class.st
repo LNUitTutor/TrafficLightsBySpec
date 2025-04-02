@@ -26,7 +26,7 @@ Class {
 		'duration',
 		'switchedOn'
 	],
-	#category : #TrafficLightsProject
+	#category : #'TrafficLightsProject-Model'
 }
 
 { #category : #'instance creation' }
@@ -35,13 +35,20 @@ Lamp class >> new: aColor for: time on: aMorph [
 	^ self basicNew
 		  color: aColor;
 		  duration: time;
-		  view: aMorph
+		  view: aMorph;
+		  switchOff
+]
+
+{ #category : #constants }
+Lamp class >> passiveColor [
+
+	^ Color lightGray lighter
 ]
 
 { #category : #accessing }
-Lamp >> color: anObject [
+Lamp >> color: aColor [
 
-	color := anObject
+	color := aColor
 ]
 
 { #category : #accessing }
@@ -51,14 +58,14 @@ Lamp >> duration [
 ]
 
 { #category : #accessing }
-Lamp >> duration: anNumber [
-	duration := anNumber
+Lamp >> duration: aNumber [
+	duration := aNumber
 ]
 
 { #category : #initialization }
 Lamp >> initialize [
 
-	color := Color lightGray lighter.
+	color := self class passiveColor.
 	view := nil.
 	duration := 5.
 	switchedOn := false
@@ -85,7 +92,7 @@ Lamp >> printOn: aStream [
 Lamp >> switchOff [
 
 	switchedOn := false.
-	view color: Color lightGray lighter.
+	view color: self class passiveColor
 ]
 
 { #category : #action }
@@ -96,7 +103,7 @@ Lamp >> switchOn [
 ]
 
 { #category : #accessing }
-Lamp >> view: anObject [
+Lamp >> view: aMorph [
 
-	view := anObject
+	view := aMorph
 ]
