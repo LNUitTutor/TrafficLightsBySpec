@@ -6,3 +6,11 @@ A simple example of using Spec. To create the application were used:
 
 The application can work in two modes: in the manual mode user switches lamps one by one by pressing the button,
 in the automatic mode a stopwatch helps to switch lamp. A user can define durations of glow of the lamps.
+
+To load the progect execute
+```
+Metacello new
+   baseline: 'TrafficLightsProject';
+   repository: 'github://LNUitTutor/TrafficLightsBySpec/src';
+   load
+```
