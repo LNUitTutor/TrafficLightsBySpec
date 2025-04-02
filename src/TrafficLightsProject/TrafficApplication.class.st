@@ -9,7 +9,7 @@ TrafficApplication example.
 Class {
 	#name : #TrafficApplication,
 	#superclass : #SpApplication,
-	#category : #TrafficLightsProject
+	#category : #'TrafficLightsProject-View'
 }
 
 { #category : #examples }
