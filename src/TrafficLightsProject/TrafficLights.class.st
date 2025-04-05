@@ -42,7 +42,7 @@ TrafficLights class >> new [
 
 { #category : #'instance creation' }
 TrafficLights class >> newWith: aMorph [
-
+	"aMorph has to be a BorderedMorph with three circle submorphs"
 	^ self basicNew
 		  view: aMorph;
 		  initialize
@@ -66,7 +66,8 @@ TrafficLights >> changeLamp [
 
 { #category : #initialization }
 TrafficLights >> initialize [
-
+	"The array of lamps contains three lamps and an additional reference to the yellow one.
+	 The yellow lamp is active and switched on. The method of changing corresponds to day mode"
 	lamps := {
 		         (Lamp new: Color red for: 5 on: (view submorphs at: 1)).
 		         (Lamp new: Color yellow for: 1 on: (view submorphs at: 2)).
@@ -82,7 +83,7 @@ TrafficLights >> initialize [
 
 { #category : #action }
 TrafficLights >> nextLamp [
-
+	"Always next lamp in the day mode"
 	(lamps at: activeLamp) switchOff.
 	activeLamp := activeLamp % 4 + 1.
 	(lamps at: activeLamp) switchOn
@@ -90,7 +91,7 @@ TrafficLights >> nextLamp [
 
 { #category : #action }
 TrafficLights >> run [
-
+	"starts execution of lamps changing"
 	mustRun := true.
 	[
 	[ mustRun ] whileTrue: [
@@ -103,21 +104,23 @@ TrafficLights >> run [
 
 { #category : #accessing }
 TrafficLights >> setDurations: anArray [
+	"sets duration of each lamp"
 	1 to: 3 do: [ :i | (lamps at: i) duration: (anArray at: i) ]
 ]
 
 { #category : #action }
 TrafficLights >> stop [
+	"stops execution of lamps changing"
 	mustRun := false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 TrafficLights >> switchToDayMode [
 
 	method := #nextLamp
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 TrafficLights >> switchToNightMode [
 
 	(lamps at: activeLamp) switchOff.

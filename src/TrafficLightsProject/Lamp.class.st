@@ -31,7 +31,7 @@ Class {
 
 { #category : #'instance creation' }
 Lamp class >> new: aColor for: time on: aMorph [
-
+	"create an instance with the color, duration and view"
 	^ self basicNew
 		  color: aColor;
 		  duration: time;
@@ -41,7 +41,7 @@ Lamp class >> new: aColor for: time on: aMorph [
 
 { #category : #constants }
 Lamp class >> passiveColor [
-
+	"color of an off lamp"
 	^ Color lightGray lighter
 ]
 
@@ -59,15 +59,16 @@ Lamp >> duration [
 
 { #category : #accessing }
 Lamp >> duration: aNumber [
+
 	duration := aNumber
 ]
 
 { #category : #initialization }
 Lamp >> initialize [
-
+	"shouldn't be used"
 	color := self class passiveColor.
 	view := nil.
-	duration := 5.
+	duration := 1.
 	switchedOn := false
 ]
 
@@ -90,14 +91,14 @@ Lamp >> printOn: aStream [
 
 { #category : #action }
 Lamp >> switchOff [
-
+	"set the view's color to standard value"
 	switchedOn := false.
 	view color: self class passiveColor
 ]
 
 { #category : #action }
 Lamp >> switchOn [
-
+	"set the view's color to the lamp's color"
 	switchedOn := true.
 	view color: color
 ]

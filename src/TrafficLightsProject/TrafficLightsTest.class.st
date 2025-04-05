@@ -38,5 +38,5 @@ TrafficLightsTest >> testNew [
 { #category : #tests }
 TrafficLightsTest >> testNewWith [
 
-	self assert: (morph submorphs at: 2) color equals: Color yellow.
+	self assert: (morph submorphs at: 2) color equals: Color yellow
 ]
