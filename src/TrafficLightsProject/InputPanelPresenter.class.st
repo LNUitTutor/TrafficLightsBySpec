@@ -27,16 +27,25 @@ Class {
 	#category : #'TrafficLightsProject-View'
 }
 
-{ #category : #accessing }
+{ #category : #'api - configuration' }
 InputPanelPresenter >> action: aBlock [
-
+	"configures the presenter's button"
 	readyButton action: aBlock
+]
+
+{ #category : #'api - accessing' }
+InputPanelPresenter >> allDurations [
+	"returns three numbers - durations of all lamps"
+	^ {
+		  self redDuration.
+		  self yellowDuration.
+		  self greenDuration }
 ]
 
 { #category : #initialization }
 InputPanelPresenter >> connectPresenters [
-
-	readyButton action: [
+	"for test purposes"
+	self action: [
 		Transcript show: '   Red - '; show: self redDuration printString; cr.
 		Transcript show: 'Yellow - '; show: self yellowDuration printString; cr.
 		Transcript show: ' Green - '; show: self greenDuration printString; cr.
@@ -45,9 +54,7 @@ InputPanelPresenter >> connectPresenters [
 
 { #category : #layout }
 InputPanelPresenter >> defaultLayout [
-	"Set durations of ligths"
-	| grid |
-	grid := SpGridLayout new
+	^ SpGridLayout new
 		  add: 'Set durations of ligths' at: 1 @ 1 span: 2 @ 1;
 		  add: 'red' at: 1 @ 2;
 		  add: redInput at: 2 @ 2;
@@ -56,12 +63,10 @@ InputPanelPresenter >> defaultLayout [
 		  add: 'green' at: 1 @ 4;
 		  add: greenInput at: 2 @ 4;
 		  add: readyButton at: 1 @ 5 span: 2 @ 1;
-		  yourself.
-	grid borderWidth: 5"; borderColor: Color black".
-	^ grid
+		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : #'api - accessing' }
 InputPanelPresenter >> greenDuration [
 
 	^ greenInput number
@@ -90,19 +95,19 @@ InputPanelPresenter >> initializePresenters [
 
 { #category : #initialization }
 InputPanelPresenter >> initializeWindow: aWindowPresenter [
-
+	"for test puposes"
 	aWindowPresenter
 		title: 'Set durations of ligths';
-		initialExtent: 200 @ 200
+		initialExtent: 270 @ 200
 ]
 
-{ #category : #accessing }
+{ #category : #'api - accessing' }
 InputPanelPresenter >> redDuration [
 
 	^ redInput number
 ]
 
-{ #category : #accessing }
+{ #category : #'api - accessing' }
 InputPanelPresenter >> yellowDuration [
 
 	^ yellowInput number

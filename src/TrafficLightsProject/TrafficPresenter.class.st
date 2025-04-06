@@ -23,7 +23,6 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'view',
-		'body',
 		'manualButton',
 		'autoButton',
 		'durationPanel',
@@ -47,10 +46,7 @@ TrafficPresenter >> connectPresenters [
 	durationPanel action: [
 		durationPanel hide.
 		model
-			setDurations: {
-					durationPanel redDuration.
-					durationPanel yellowDuration.
-					durationPanel greenDuration };
+			setDurations: durationPanel allDurations;
 			run ].
 	switchButton
 		whenActivatedDo: [
@@ -87,7 +83,8 @@ TrafficPresenter >> defaultLayout [
 
 { #category : #initialization }
 TrafficPresenter >> initializeMorph [
-
+	"build a morph view of a trafficlights"
+	| body |
 	body := BorderedMorph new
 		        color: Color lightGray;
 		        extent: 170 @ 440.
@@ -104,20 +101,22 @@ TrafficPresenter >> initializeMorph [
 				 borderColor: Color darkGray;
 				 extent: 120 @ 120;
 				 position: body position + (25 @ 285)) }.
-	model := TrafficLights newWith: body.
+	^ body
 ]
 
 { #category : #initialization }
 TrafficPresenter >> initializePresenters [
 
-	self initializeMorph.
+	| body |
 	view := self instantiate: SpMorphPresenter.
 	manualButton := self newButton.
 	autoButton := self newButton.
 	switchButton := self newToggleButton.
 	quitButton := self newButton. 
 	durationPanel := self instantiate: InputPanelPresenter.
-
+	body := self initializeMorph.
+	model := TrafficLights newWith: body.
+	
 	view morph: body.
 	manualButton
 		label: 'Manual switch';
@@ -131,7 +130,7 @@ TrafficPresenter >> initializePresenters [
 	quitButton
 		label: 'Quit';
 		icon: (self iconNamed: #smallQuit).
-	durationPanel hide.
+	durationPanel hide
 ]
 
 { #category : #initialization }

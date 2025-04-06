@@ -122,7 +122,7 @@ TrafficLights >> switchToDayMode [
 
 { #category : #action }
 TrafficLights >> switchToNightMode [
-
+	"at night mode the active lamp always is the yellow one"
 	(lamps at: activeLamp) switchOff.
 	activeLamp := 2.
 	method := #blinkLamp
