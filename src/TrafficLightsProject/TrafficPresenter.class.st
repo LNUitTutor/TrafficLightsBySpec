@@ -136,6 +136,7 @@ TrafficPresenter >> initializePresenters [
 { #category : #initialization }
 TrafficPresenter >> initializeWindow: aWindowPresenter [
 
+	super initializeWindow: aWindowPresenter.
 	aWindowPresenter
 		title: 'Traffic Ligths Model by Pharo';
 		initialExtent: 360 @ 475
