@@ -16,7 +16,7 @@ Class {
 TrafficApplication class >> example [
 
 	<script>
-	self new start
+	self new run
 ]
 
 { #category : #running }
