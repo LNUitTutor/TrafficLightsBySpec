@@ -139,5 +139,6 @@ TrafficPresenter >> initializeWindow: aWindowPresenter [
 	super initializeWindow: aWindowPresenter.
 	aWindowPresenter
 		title: 'Traffic Ligths Model by Pharo';
-		initialExtent: 360 @ 475
+		initialExtent: 360 @ 475;
+		aboutText: 'Model of Traffic Lights built with Spec.\\Can run under manual or automatic control.\Day and night modes are available.\\ (C) Serhiy Yaroshko, IFNUL, 2025' withCRs
 ]
